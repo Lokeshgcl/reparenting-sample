@@ -1,10 +1,8 @@
-import ParentOne from "./parentOne";
 import React, { Component, Ref, useRef } from "react";
 import { Fiber } from "react-reconciler";
-import "./styles.css";
-import ParentTwo from "./parentTwo";
 import Parent from "./Parent";
 import { addChild, ParentFiber, removeChild } from "./parentFiber";
+import "./styles.css";
 
 function getFiberFromClassInstance(instance: Component): Fiber {
   // @ts-ignore
@@ -40,15 +38,16 @@ const App = (): JSX.Element => {
 
   return (
     <div>
-      <div className="App" id="idApp">
-        <ParentOne />
+      <div className="App">
+        <div>
+          <h1>Reparent Demo</h1>
+        </div>
       </div>
       <div
         className="App"
         style={{
           background: "blue",
         }}
-        id="idApp3"
       >
         <Parent parentRef={parentRef}>
           <div>
@@ -73,7 +72,6 @@ const App = (): JSX.Element => {
         style={{
           background: "yellow",
         }}
-        id="idApp4"
       >
         <Parent parentRef={parentRefTwo}>
           <div>
@@ -81,9 +79,11 @@ const App = (): JSX.Element => {
           </div>
         </Parent>
       </div>
-      <button onClick={() => reparent(parentRef, parentRefTwo)}>
-        ReParnet
-      </button>
+      <div className="App">
+        <button onClick={() => reparent(parentRef, parentRefTwo)}>
+          ReParnet
+        </button>
+      </div>
     </div>
   );
 };
