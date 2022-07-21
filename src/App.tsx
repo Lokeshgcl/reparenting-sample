@@ -1,5 +1,6 @@
 import React, { Component, Ref, useRef } from "react";
 import { Fiber } from "react-reconciler";
+import Child from "./child";
 import Parent from "./Parent";
 import { addChild, ParentFiber, removeChild } from "./parentFiber";
 import "./styles.css";
@@ -26,10 +27,11 @@ const reparent = (fromParent: Ref<ParentFiber>, toParent: Ref<ParentFiber>) => {
 
   if (!fib) return;
   if (!toFib) return;
+
   const child = removeChild(fib, 0);
   if (!child) return;
 
-  addChild(toFib, fib, 0);
+  addChild(toFib, child, 0);
 };
 
 const App = (): JSX.Element => {
@@ -50,11 +52,9 @@ const App = (): JSX.Element => {
         }}
       >
         <Parent parentRef={parentRef}>
+          <Child />
           <div>
-            <h4>parent</h4>
-          </div>
-          <div>
-            <input type="text" />
+            <h4>I will stay</h4>
           </div>
         </Parent>
       </div>

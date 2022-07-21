@@ -161,10 +161,6 @@ export function addChild(
   // If there are the alternates.
   if (child.alternate === null || parent.alternate === null) {
     if (child.alternate !== null) {
-      // The React team has done such a good job with the reconciler that we can simply
-      // leave the alternate attached (although the parent does not yet exist)
-      // and the reconciler will update it during the next render.
-      // Removing it would take a lot of work (sync all the subtree and update the stateNodes references).
       child.alternate.return = null;
       child.alternate.sibling = null;
     }
